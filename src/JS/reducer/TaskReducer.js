@@ -1,4 +1,4 @@
-import { ADD, COMPLETE, EDITABLE, UPDATE } from "../constants/actionstypes";
+import { ADD, COMPLETE, DELETE, EDITABLE, SEARCH, UPDATE } from "../constants/actionstypes";
 
 const initialState={
     list:[ {id:Math.random(),
@@ -17,7 +17,11 @@ const initialState={
                 return {...state.list,list:state.list.map(el=>el.id==action.payload.id ? {...el,input:action.payload.input,complete:false,editable:!el.editable}:el)}
             case EDITABLE:
                  return {...state.list,list: state.list.map((el) =>el.id === action.payload ? { ...el, editable: !el.editable }: el)};
-        default:
+            case DELETE:
+                return{...state.list,list:state.list.filter(el=>el.id!==action.payload)}
+            case SEARCH:
+                return{...state.list,list:state.list.filter(el=>action.payload ? {...el,complete:el.complete}:!el.complete)}        
+                default:
       return state;
 
     }

@@ -1,4 +1,4 @@
-import { ADD, COMPLETE, EDITABLE, SAVE, UPDATE } from "../constants/actionstypes"
+import { ADD, COMPLETE, DELETE, EDITABLE, SAVE, SEARCH, UPDATE } from "../constants/actionstypes"
 
 export const add=newTask=>{
     return {
@@ -28,3 +28,15 @@ export const editable = (id) => {
       payload: id
     };
   };
+  export const deleteTask=id=>{
+      return {
+          type: DELETE,
+          payload: id
+      }
+  }
+  export const search=complete=>{
+      return {
+          type: SEARCH,
+          payload:complete
+      }
+  }
